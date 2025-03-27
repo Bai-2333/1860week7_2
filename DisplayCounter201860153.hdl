@@ -1,15 +1,13 @@
-CHIP DisplayCounter201860153 {
-    IN inc, reset;
+CHIP Decoder13 {
+    IN D, C, B, A;
     OUT a, b, c, d, e, f, g;
 
     PARTS:
-    Inc16(in=currentCount, out=nextCount);
-    Mux16(a=nextCount, b=false[16], sel=reset, out=counter);
-    DecoderSegment(in=countex[0..3], out=a);
-    DecoderSegment(in=countex[0..3], out=b);
-    DecoderSegment(in=countex[0..3], out=c);
-    DecoderSegment(in=countex[0..3], out=d);
-    DecoderSegment(in=countex[0..3], out=e);
-    DecoderSegment(in=countex[0..3], out=f);
-    DecoderSegment(in=countex[0..3], out=g);
+    DecoderSegmentA(D=D, C=C, B=B, A=A, out=a);
+    DecoderSegmentB(D=D, C=C, B=B, A=A, out=b);
+    DecoderSegmentC(D=D, C=C, B=B, A=A, out=c);
+    DecoderSegmentD(D=D, C=C, B=B, A=A, out=d);
+    DecoderSegmentE(D=D, C=C, B=B, A=A, out=e);
+    DecoderSegmentF(D=D, C=C, B=B, A=A, out=f);
+    DecoderSegmentG(D=D, C=C, B=B, A=A, out=g);
 }

@@ -3,11 +3,18 @@ CHIP Decoder201860153 {
     OUT a, b, c, d, e, f, g;
 
     PARTS:
-    DecoderSegmentA(D=D, C=C, B=B, A=A, out=a);
-    DecoderSegmentB(D=D, C=C, B=B, A=A, out=b);
-    DecoderSegmentC(D=D, C=C, B=B, A=A, out=c);
-    DecoderSegmentD(D=D, C=C, B=B, A=A, out=d);
-    DecoderSegmentE(D=D, C=C, B=B, A=A, out=e);
-    DecoderSegmentF(D=D, C=C, B=B, A=A, out=f);
-    DecoderSegmentG(D=D, C=C, B=B, A=A, out=g);
+    Not(in=A, out=notA);
+    Not(in=C, out=notC);
+    Not(in=B, out=notB);
+    Not(in=D, out=notD);
+
+    And(a=notA, b=notC, out=t1);
+    And(a=notB, b=notC, out=t2);
+    And(a=notB, b=notD, out=t3);
+    And(a=B, b=C, c=D, out=t4);
+    And(a=A, b=notD, out=t5);
+    Or(a=t1, b=t2, out=o1);
+    Or(a=o1, b=t3, out=o2);
+    Or(a=o2, b=t4, out=o3);
+    Or(a=o3, b=t5, out=a);
 }
